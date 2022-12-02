@@ -1,3 +1,3 @@
-Input read in 3023 microseconds.
-Calculated the most Calories on an elf in 314 microseconds.
-Calculated the Calories on top three elves in 570 microseconds.
+Input read in 4587 microseconds.
+Calculated the most Calories on an elf in 1016 microseconds.
+Calculated the Calories on top three elves in 325 microseconds.
