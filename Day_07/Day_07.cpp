@@ -100,15 +100,30 @@ inline long long size(Directory* dir, long long max,long long& total) {
 
 inline void smallest_free(Directory* dir, long long required_space, long long& current_max, std::string& name) {
 	std::cout << dir->name << " " << dir->size << " > " << required_space << " ? " << (dir->size > required_space) << " current " << current_max << " by " << name <<" smaller? " << (dir->size < current_max) << "\n";
-	if (dir->size > required_space && dir->size < current_max) {
-		current_max = dir->size;
-		name = dir->name;
+	if (dir->size > required_space) {
+		if (dir->size < current_max) {
+			current_max = dir->size;
+			name = dir->name;
+		}
 		for (Directory& subdir : dir->subdirectories) {
 			smallest_free(&subdir, required_space, current_max, name);
 		}
 	}
 }
 
+
+inline void printdirs(Directory* dir, int depth) {
+	std::cout << std::setw(depth*2) << "- " << dir->name <<  "(dir, size =" << dir->size <<  ")\n";
+	if (dir->name == "brzwbmc") {
+		std::cout << "hi";
+	}
+	for (Directory& subdir : dir->subdirectories) {
+		printdirs(&subdir, ++depth);
+	}
+	for (File& file : dir->files) {
+		std::cout << std::setw((depth + 1)*2) << "- " << file.name << file.filetype << "(file, size=" << file.size << ")\n";
+	}
+}
 
 
 int main() {
@@ -127,6 +142,8 @@ int main() {
 	std::cout << "Sum of all Directories smaller than" << 100000 << ": " << total << "\n";
 	duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 	file_time << "Calculated Part 1 in " << duration.count() << " microseconds.\n";
+
+	printdirs(&root,0);
 
 	long long required = 30000000, max = 70000000;
 	long long free_space = max - root.size;
