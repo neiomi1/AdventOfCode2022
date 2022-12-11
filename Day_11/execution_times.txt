@@ -1,0 +1,3 @@
+Input read in 609 microseconds.
+Calculated Part 1 in 655 microseconds.
+Calculated Part 2 in 237163 microseconds.

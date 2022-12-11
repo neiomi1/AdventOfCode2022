@@ -1,4 +1,4 @@
-#include "Day_10.h"
+﻿#include "Day_10.h"
 
 #include <chrono>
 #include <map>
@@ -92,7 +92,7 @@ inline void part_2(std::vector<std::pair<Command, int>>& instructions) {
 				std::cout << '#';
 			}
 			else {
-				std::cout << '.';
+				std::cout << ' ';
 			}
 			cycle++;
 		}
